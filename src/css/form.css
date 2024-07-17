@@ -1,0 +1,57 @@
+/* Styles for the contact form */
+.contact-form {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 50px; /* Adjust the top margin as needed */
+    padding: 20px;
+    background-color: #003366; /* Dark blue background for the form */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-form label {
+    color: #99ccff; /* Light blue label color */
+  }
+  
+  .contact-form .error-message {
+    color: red;
+    font-size: 14px;
+  }
+  
+  .contact-form button[type="submit"] {
+    background-color: #003366; /* Even darker purple on hover */
+    color: #99ccff; /* Dark blue placeholder text color */
+    border: 1px solid #99ccff;
+
+  }
+  
+  .contact-form button[type="submit"]:hover {
+    background-color: #336699; /* Dark purple button background */
+    color: #eef1f4; /* Dark blue placeholder text color */
+    border: 1px solid white;
+
+
+  }
+  
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: #336699; /* Dark blue placeholder text color */
+  }
+  
+  .contact-form input {
+    background-color: #f2f2f2; /* Light gray input background color */
+    border: none;
+    color: #003366; /* Dark blue text color for input */
+    padding: 8px 10px; /* Adjust padding as needed */
+    border-radius: 5px;
+  }
+  
+  .contact-form textarea {
+    background-color: #f2f2f2; /* Light gray textarea background color */
+    border: none;
+    color: #003366; /* Dark blue text color for textarea */
+    padding: 8px 10px; /* Adjust padding as needed */
+    border-radius: 5px;
+    resize: vertical; /* Allow vertical resizing of textarea */
+  }
+  

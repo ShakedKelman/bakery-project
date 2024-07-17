@@ -1,0 +1,24 @@
+
+  
+  .custom-card-style {
+    border: 1px solid #003366; /* Dark blue border */
+    background-color: #99ccff; /* Light blue background */
+    color: #003366; /* Dark blue text color */
+    margin-bottom: 20px;
+  }
+  
+  .product-card {
+    margin-bottom: 20px; /* Space between products */
+  }
+  .card-body{
+    background-color: #99ccff; /* Light blue background */
+
+  }
+  
+  .button-wrapper{
+    display: flex;
+    flex-direction: row  ;
+    justify-content: center;
+  }
+  /* Add any additional styles as needed */
+  
