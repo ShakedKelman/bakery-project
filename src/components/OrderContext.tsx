@@ -32,7 +32,9 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
           productId: product.id,
           quantity: 1,
           amount: product.price,
-          total: product.price
+          total: product.price,
+          product: product // Add this line
+
         };
         return [...prevItems, newOrderItem];
       }
