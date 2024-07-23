@@ -30,6 +30,8 @@ const Products: React.FC = () => {
         };
 
         fetchProducts();
+        console.log('Rendering Products component');
+
     }, []);
 
     return (
