@@ -7,6 +7,8 @@ import { ProductModel } from '../../models/productInterface';
 import { Container, Row } from 'react-bootstrap';
 import '../../css/navbar.css';
 
+
+
 const Products: React.FC = () => {
     const [products, setProducts] = useState<ProductModel[]>([]);
 

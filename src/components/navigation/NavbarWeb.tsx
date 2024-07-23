@@ -13,10 +13,10 @@ type Props = {
   };
 
 const NavbarWeb = ({ orderedItems }: Props) => {
-    const [showOrderLink, setShowOrderLink] = useState(false); // State to toggle showing "Order" link
-    React.useEffect(() => {
-        setShowOrderLink(orderedItems.length > 0);
-      }, [orderedItems]);
+    // const [showOrderLink, setShowOrderLink] = useState(false); // State to toggle showing "Order" link
+    // React.useEffect(() => {
+    //     setShowOrderLink(orderedItems.length > 0);
+    //   }, [orderedItems]);
   return (
     <Navbar className="navbar-lilac" variant="light">
     <Container>
@@ -32,12 +32,14 @@ const NavbarWeb = ({ orderedItems }: Props) => {
         </Nav>
 
         {/* Cart Icon */}
-        <Nav className="ms-auto"> {/* 'ms-auto' class aligns items to the right */}
+        <Nav className="ms-auto">
+          {orderedItems.length > 0 && (
             <Nav.Link as={Link} to="/orders" className="cart-icon">
-                <ShoppingCartOutlinedIcon />
+              <ShoppingCartOutlinedIcon />
+              <span className="cart-item-count">{orderedItems.length}</span>
             </Nav.Link>
-        </Nav>
-  
+          )}
+  </Nav>
     </Container>
 </Navbar>
 );

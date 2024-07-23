@@ -11,7 +11,7 @@
     margin-bottom: 20px; /* Space between products */
   }
   .card-body{
-    background-color: #99ccff; /* Light blue background */
+    /* background-color: #99ccff;  */
 
   }
   
@@ -19,6 +19,7 @@
     display: flex;
     flex-direction: row  ;
     justify-content: center;
+    margin: 20px;
   }
   /* Add any additional styles as needed */
   
