@@ -5,7 +5,7 @@ import '../../../fullstack-project/src/css/homepage.css';
 import image1 from '../assets/harim-bakery.webp';
 import image2 from '../assets/cake.png';
 import image3 from '../assets/pate&paff.avif';
-import image4 from '../assets/Cupcakes-homepage.jpeg';
+import image4 from '../assets/Cupcakes-homepage.jpg';
 import image5 from '../assets/culinarypastry.png';
 import image6 from '../assets/estetic-pastry.jpg';
 

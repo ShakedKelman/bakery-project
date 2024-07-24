@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Card, Button } from 'react-bootstrap';
+import { Col, Card, Button, Alert } from 'react-bootstrap';
 import { ProductModel } from '../../models/ProductModel';
 import { SvgIcon } from '@mui/material';
 import { useOrder } from '../OrderContext';
-// src/components/ProductCard.tsx
 import Product from './Product';
 
 type ProductCardProps = {
@@ -13,6 +12,7 @@ type ProductCardProps = {
 function ProductCard({ product }: ProductCardProps) {
     const { addToOrder, removeFromOrder, orderedItems } = useOrder();
     const [quantity, setQuantity] = useState(0);
+    const [showAlert, setShowAlert] = useState(false);
 
     useEffect(() => {
         const orderItem = orderedItems.find(item => item.productId === product.id);
@@ -20,19 +20,34 @@ function ProductCard({ product }: ProductCardProps) {
     }, [orderedItems, product.id]);
 
     const handleAddToCard = () => {
+        if (quantity === 0) {
+            setShowAlert(true);
+            setTimeout(() => setShowAlert(false), 2000); // Hide alert after 2 seconds
+        }
         addToOrder(product);
     };
 
     const handleRemoveFromCard = () => {
         removeFromOrder(product.id);
-        console.log(`Rendering ProductCard for ${product.name}`);
+    };
+    const alertStyle = {
+        fontSize: '1.2em',
+        backgroundColor: 'white', /* Light green background */
+        borderColor: '#003366', /* Light green border */
+        maxHeight:'100px',
+        width:'300px',
+        padding:'5px',
 
     };
-
     return (
+        <div>
+               
         <Col>
+ 
             <Card className="custom-card-style">
+                
                 <Product product={product} />
+                
                 <div className='button-wrapper'>
                     {quantity === 0 ? (
                         <Button variant="outline-light" onClick={handleAddToCard} className="mt-3 add-button" size="sm">
@@ -60,9 +75,21 @@ function ProductCard({ product }: ProductCardProps) {
                         </div>
                     )}
                 </div>
-               
+       
             </Card>
         </Col>
+        <Alert 
+                    show={showAlert} 
+                    variant="success" 
+                    onClose={() => setShowAlert(false)} 
+                    dismissible
+                    style={alertStyle}
+                    className="mt-3"
+                >
+                    The item was added to your order. go to cart  to finish & send your order.
+                </Alert>
+        </div>
+
     );
 }
 

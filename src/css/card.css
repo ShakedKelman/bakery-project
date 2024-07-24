@@ -4,7 +4,7 @@
     border-radius: 5px; /* Rounded corners for all corners */
     overflow: hidden; /* Ensures child elements respect the border radius */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
-    position: relative; /* Needed for absolute positioning of buttons */
+    position: relative; /* Needed for absolute positioning of child elements */
     width: 300px; /* Increased width */
     height: 300px; /* Increased height to match width */
 }
@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: #003366; /* Dark blue background */
+    background-color: #001d3a; 
     border-radius: 0 0 5px 5px; /* Top corners radius 0, bottom corners radius 5px */
     padding: 5px; /* Padding around the buttons */
     position: absolute; /* Position it inside the card */
@@ -33,14 +33,13 @@
     border-radius: 5px; /* Rounded corners for the button */
     padding: 8px 16px; /* Padding inside the button */
     transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
-    background-color: #003366; /* Set default background color */
+    background-color: #001d3a; 
 }
 
-/* Hover Effect for Add Button - removed */
-/*.add-button:hover {
-    background-color: #66b2ff; Light blue background on hover 
-    transform: scale(1.05); Slightly enlarge the button on hover 
-}*/
+.button-wrapper:hover {
+    background-color: #001d3a; 
+    transform: scale(1.05);
+}
 
 /* Card Body */
 .card-body {
@@ -55,7 +54,7 @@
     border-radius: 5px; /* Rounded corners for all corners */
     overflow: hidden; /* Ensures child elements respect the border radius */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
-    position: relative; /* Needed for absolute positioning of buttons */
+    position: relative; /* Needed for absolute positioning of child elements */
     width: 300px; /* Increased width */
     height: 300px; /* Increased height to match width */
 }
@@ -78,7 +77,17 @@
 .card-title {
     font-size: 1.2em; /* Larger font size */
     margin-bottom: 10px; /* Space below the title */
+    overflow: hidden; /* Hide overflow text */
+    white-space: normal; /* Allow text to wrap */
+    word-wrap: break-word; /* Break long words onto the next line */
+    line-height: 1.3; /* Adjust line height for better readability */
+    text-align: center; /* Center text horizontally within the container */
+    width: 150px;
+    justify-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
 }
+
 
 /* Card Image */
 .card-img-top {
@@ -89,10 +98,29 @@
     border-bottom: 5px solid #030303; /* Bottom border to separate image from content */
 }
 
-
-.text-wrapper{
+/* Text Wrapper */
+.text-wrapper {
     margin-top: 40px;
     height: 100%;
     width: 100%;
+}
+
+/* Card Text */
+.card-text {
+    display: flex;
+    align-items: center; /* Vertically centers text */
+    justify-content: center; /* Horizontally centers text */
+    border-radius: 50px;
+    background-color: #001d3a;
+    height: 50px;
+    width: 50px;
+    color: white; /* Optional: Sets text color */
+    text-align: center; /* Optional: Centers text horizontally within the container */
+    font-size: 16px; /* Optional: Adjust text size */
+    position: absolute; /* Absolute positioning */
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+    font-family: 'PT Sans', sans-serif;
+
 
 }

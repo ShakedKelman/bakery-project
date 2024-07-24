@@ -1,20 +1,21 @@
 /* navbar.css */
 .navbar-lilac {
-    background-color: #003366; /* Dark blue background */
-    color: #99ccff; /* Light blue label color */
-    margin-bottom: 20px;
+    background-color: #001d3a; 
+    color: #d0d5da; /* Light blue label color */
   }
   
   .navbar-lilac .nav-link {
-    color: #99ccff !important; /* Ensure links are also light blue */
+    color: #d7dee4 !important; /* Ensure brand text is light blue */
+
   }
   
   .navbar-lilac .navbar-brand {
-    color: #99ccff !important; /* Ensure brand text is light blue */
+    color: #d7dee4 !important; /* Ensure brand text is light blue */
   }
   
   
 /* Adjusting cart icon position */
 .cart-icon {
     margin-right: 120px; /* Adjust the margin-left as needed */
+
 }

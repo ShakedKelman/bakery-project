@@ -1,28 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../css/navbar.css';
 import '../../css/card.css';
 import { ProductModel } from '../../models/ProductModel';
+import defaultImage from '../../assets/lets-bake.jpg';
 
 type Props = {
-  product: ProductModel;
+  product: ProductModel & { images?: { url: string }[] };
 };
 
 const Product = ({ product }: Props) => {
-  const defaultImageUrl = "/fullstack-project/assets/custom-order-numbers-e1438361586475.png";
-  // Check if product.imageUrl is undefined or an empty string, and use defaultImageUrl if true
-  const imageUrl = product.imageUrl && product.imageUrl.trim() !== "" ? product.imageUrl : defaultImageUrl;
+  const defaultImageUrl = defaultImage;
+  const [imageError, setImageError] = useState(false);
+
+  const initialImageUrl = (product.images && product.images.length > 0)
+    ? product.images[0].url
+    : defaultImageUrl;
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
+  const backgroundImageUrl = imageError ? defaultImageUrl : initialImageUrl;
 
   return (
-    <div className="product-card"> {/* Add margin bottom to create space between products */}
-      <div className='text-wrapper'>
-        <h5 className="card-title">{product.name}</h5>
-        <img className="card-img-top" src={imageUrl} alt={product.name} />
-        <div className="card-body">
-          <p className="card-text">
-            <strong>Price: ${product.price}</strong>
-          </p>
-        </div>
+    <div 
+      className="product-card"
+      style={{
+        backgroundImage: `url(${backgroundImageUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '300px', // Adjust as needed
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        padding: '20px',
+        borderRadius: '10px',
+        color: 'white',
+        textShadow: '2px 2px 4px rgba(0,0,0,0.7)'
+      }}
+    >
+      <h5 className="card-title">{product.name}</h5>
+      <div className="card-body">
+        <p className="card-text">
+          <strong> ${product.price}</strong>
+        </p>
       </div>
+      <img 
+        src={backgroundImageUrl} 
+        alt={product.name}
+        onError={handleImageError}
+        style={{ display: 'none' }}
+      />
     </div>
   );
 };

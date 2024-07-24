@@ -28,6 +28,9 @@ const ContactForm = () => {
   };
 
   return (
+
+    <div className="contact-page">
+
     <Form onSubmit={handleSubmit(onSubmit)} className="contact-form">
       <Form.Group controlId="formFullName">
         <Form.Label>Full Name</Form.Label>
@@ -83,6 +86,8 @@ const ContactForm = () => {
       <br />
       <Button variant="primary" type="submit">Send</Button>
     </Form>
+    </div>
+
   );
 };
 

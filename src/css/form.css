@@ -3,10 +3,14 @@
     max-width: 400px;
     margin: auto;
     margin-top: 50px; /* Adjust the top margin as needed */
-    padding: 20px;
-    background-color: #003366; /* Dark blue background for the form */
+    background-color: #001d3a; 
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Add padding for better spacing */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    max-width: 600px; /* Limit form width */
+    width: 100%;
+    
   }
   
   .contact-form label {
@@ -53,5 +57,25 @@
     padding: 8px 10px; /* Adjust padding as needed */
     border-radius: 5px;
     resize: vertical; /* Allow vertical resizing of textarea */
+  }
+  
+
+  /* Apply styles to the entire page or container */
+.contact-page {
+    background-image: url('../assets/backgrounf.jpg'); /* Update with the correct path to your image */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    min-height: 100vh; /* Ensure it covers the entire viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+  }
+  
+
+  
+  .error-message {
+    color: red;
   }
   

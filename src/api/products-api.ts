@@ -26,6 +26,27 @@ export async function getProducts(): Promise<ProductModel[]> {
     }
 }
 
+// Function to get unique categories
+export async function getCategories(): Promise<string[]> {
+    try {
+        const products = await getProducts();
+        const categories = products.map(product => product.category);
+
+        // Deduplicate categories manually
+        const uniqueCategories: string[] = [];
+        for (const category of categories) {
+            if (!uniqueCategories.includes(category)) {
+                uniqueCategories.push(category);
+            }
+        }
+
+        return uniqueCategories;
+    } catch (error) {
+        console.error("Error in getCategories:", error);
+        return [];
+    }
+}
+
 // export async function sendOrder(orderData: OrderModel): Promise<{ success: boolean; message: string }> {
 //     try {
 //       const res = await apiCall('order/new', 'POST', {
