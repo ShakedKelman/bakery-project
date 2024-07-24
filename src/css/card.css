@@ -1,25 +1,98 @@
-
-  
-  .custom-card-style {
-    border: 1px solid #003366; /* Dark blue border */
-    background-color: #99ccff; /* Light blue background */
-    color: #003366; /* Dark blue text color */
+/* Custom Card Style */
+.custom-card-style {
     margin-bottom: 20px;
-  }
-  
-  .product-card {
-    margin-bottom: 20px; /* Space between products */
-  }
-  .card-body{
-    /* background-color: #99ccff;  */
+    border-radius: 5px; /* Rounded corners for all corners */
+    overflow: hidden; /* Ensures child elements respect the border radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+    position: relative; /* Needed for absolute positioning of buttons */
+    width: 300px; /* Increased width */
+    height: 300px; /* Increased height to match width */
+}
 
-  }
-  
-  .button-wrapper{
+/* Button Wrapper */
+.button-wrapper {
     display: flex;
-    flex-direction: row  ;
+    flex-direction: row;
     justify-content: center;
-    margin: 20px;
-  }
-  /* Add any additional styles as needed */
-  
+    background-color: #003366; /* Dark blue background */
+    border-radius: 0 0 5px 5px; /* Top corners radius 0, bottom corners radius 5px */
+    padding: 5px; /* Padding around the buttons */
+    position: absolute; /* Position it inside the card */
+    bottom: 0; /* Stick it to the bottom */
+    left: 0; /* Stick it to the left */
+    right: 0; /* Stick it to the right */
+    opacity: 1; /* Always visible */
+    transition: opacity 0.3s; /* Smooth transition */
+}
+
+/* Add Button */
+.add-button {
+    color: #dde3ea;
+    margin: 10px;
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for the button */
+    padding: 8px 16px; /* Padding inside the button */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+    background-color: #003366; /* Set default background color */
+}
+
+/* Hover Effect for Add Button - removed */
+/*.add-button:hover {
+    background-color: #66b2ff; Light blue background on hover 
+    transform: scale(1.05); Slightly enlarge the button on hover 
+}*/
+
+/* Card Body */
+.card-body {
+    color: #011529; /* Text color */
+    padding: 15px; /* Padding inside the card body */
+}
+
+/* Product Card */
+.product-card {
+    background-color: #c2dcf4; /* Light blue background */
+    text-align: center; /* Center text */
+    border-radius: 5px; /* Rounded corners for all corners */
+    overflow: hidden; /* Ensures child elements respect the border radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+    position: relative; /* Needed for absolute positioning of buttons */
+    width: 300px; /* Increased width */
+    height: 300px; /* Increased height to match width */
+}
+
+/* Counter Display */
+.counter-display {
+    color: white;
+    font-size: 1.2em; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    margin-top: 15px;
+}
+
+/* Card Header */
+.card-header {
+    border-bottom: 1px solid #ddd; /* Subtle bottom border */
+    padding: 10px; /* Padding inside the card header */
+}
+
+/* Card Title */
+.card-title {
+    font-size: 1.2em; /* Larger font size */
+    margin-bottom: 10px; /* Space below the title */
+}
+
+/* Card Image */
+.card-img-top {
+    width: 100px; /* Full width */
+    height: 100px; /* Adjust height as needed */
+    object-fit: cover; /* Ensure the image covers the area */
+    padding: 10px; /* Padding around the image */
+    border-bottom: 5px solid #030303; /* Bottom border to separate image from content */
+}
+
+
+.text-wrapper{
+    margin-top: 40px;
+    height: 100%;
+    width: 100%;
+
+}

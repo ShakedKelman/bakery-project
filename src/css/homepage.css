@@ -1,0 +1,19 @@
+.Carousel{
+    height: 500px;
+}
+
+/* .home-image {
+    background-image: url('/assets/custom-order-numbers-e1438361586475.png');
+} */
+
+.welcome-text{
+    background-color: rgba(1, 5, 18, 0.5);
+}
+
+.home-image {
+    position: relative;
+    overflow: hidden;
+  }
+  
+
+  

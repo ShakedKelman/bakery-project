@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { getProducts } from '../../api/products-api';
 import ProductCard from './ProductCard';
-import { ProductModel } from '../../models/productInterface';
+import { ProductModel } from '../../models/ProductModel';
 import { Container, Row } from 'react-bootstrap';
 import '../../css/navbar.css';
 

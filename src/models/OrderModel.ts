@@ -1,6 +1,7 @@
 // models/orderInterface.ts
 
-import { ProductModel } from "./productInterface";
+import { ProductModel } from "./ProductModel";
+
 
 export interface OrderModel{
     productId: number;

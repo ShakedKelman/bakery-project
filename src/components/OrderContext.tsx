@@ -1,7 +1,7 @@
 // src/contexts/OrderContext.tsx
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-import { ProductModel } from '../models/productInterface';
 import { OrderModel } from '../models/OrderModel';
+import { ProductModel } from '../models/ProductModel';
 
 interface OrderContextType {
   orderedItems: OrderModel[];

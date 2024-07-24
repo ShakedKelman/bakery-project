@@ -1,7 +1,7 @@
 // src/api/products-api.ts
 
 import apiCall from './apiCall';
-import { ProductModel } from '../models/productInterface';
+import { ProductModel } from '../models/ProductModel';
 import { OrderModel } from '../models/OrderModel';
 
 export async function getProducts(): Promise<ProductModel[]> {
