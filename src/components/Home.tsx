@@ -25,14 +25,14 @@ const Home = (props: Props) => {
                         <Row>
                             {/* Add your product components here */}
                             <Col md={4} className="mb-3">
-                                <div className="border p-3 text-center">  <Link to="/orders">
+                                <div className="border p-3 text-center">  <Link to="/contact">
                                     <Button variant="contained" color="secondary" style={{ marginTop: '20px', marginLeft: '10px' }}>
                                         Contact Us
                                     </Button>
                                 </Link></div>
                             </Col>
                             <Col md={4} className="mb-3">
-                                <div className="border p-3 text-center">    <Link to="/contact">
+                                <div className="border p-3 text-center">    <Link to="/order">
                                     <Button variant="contained" color="secondary" style={{ marginTop: '20px', marginLeft: '10px' }}>
                                         go to shopping cart
                                     </Button>

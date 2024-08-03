@@ -8,7 +8,7 @@ export interface OrderModel{
     quantity: number;
     amount: number;
     total: number;
-    product: ProductModel; // Add this line
+    product: ProductModel; 
 
 }
 
