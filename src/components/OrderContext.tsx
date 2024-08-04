@@ -5,7 +5,8 @@ import { ProductModel } from '../models/ProductModel';
 interface OrderContextType {
   orderedItems: OrderModel[];
   addToOrder: (product: ProductModel) => void;
-  removeFromOrder: (productId: number) => void;
+  removeFromOrder: (productId: number) => void; // Reduce quantity by 1
+  removeItemFromOrder: (productId: number) => void; // Completely remove item
   updateItemQuantity: (productId: number, quantity: number) => void;
   calculateTotalAmount: () => number;
 }
@@ -55,9 +56,15 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
             : item
         );
       } else {
-        return prevItems.filter(item => item.productId !== productId);
+        return prevItems;
       }
     });
+  };
+
+  const removeItemFromOrder = (productId: number) => {
+    setOrderedItems(prevItems => 
+      prevItems.filter(item => item.productId !== productId)
+    );
   };
 
   const updateItemQuantity = (productId: number, quantity: number) => {
@@ -79,7 +86,7 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   return (
-    <OrderContext.Provider value={{ orderedItems, addToOrder, removeFromOrder, updateItemQuantity, calculateTotalAmount }}>
+    <OrderContext.Provider value={{ orderedItems, addToOrder, removeFromOrder, removeItemFromOrder, updateItemQuantity, calculateTotalAmount }}>
       {children}
     </OrderContext.Provider>
   );

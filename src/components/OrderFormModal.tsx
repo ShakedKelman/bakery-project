@@ -3,6 +3,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import { useOrder } from './OrderContext';
 import { OrderFormData } from '../models/OrderFormDataModel';
 import { OrderModel } from '../models/OrderModel';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 type OrderFormModalProps = {
     showModal: boolean;
@@ -19,7 +20,32 @@ const OrderFormModal: React.FC<OrderFormModalProps> = ({
     handleInputChange,
     handleSubmitOrder
 }) => {
-    const { orderedItems, updateItemQuantity, removeFromOrder } = useOrder();
+    const { orderedItems, updateItemQuantity, removeItemFromOrder } = useOrder();
+
+    const subtotal = orderedItems.reduce((total, item) => total + item.total, 0);
+
+    const renderOrderItems = () => (
+        orderedItems.map((orderItem: OrderModel) => (
+            <div key={orderItem.productId} className="mb-3 d-flex align-items-center">
+                <Form.Label className="me-2">{orderItem.product.name}</Form.Label>
+                <Form.Control
+                    type="number"
+                    min="1"
+                    value={orderItem.quantity}
+                    onChange={(e) => updateItemQuantity(orderItem.productId, parseInt(e.target.value))}
+                    style={{ width: '80px' }}
+                />
+                <Button
+                    variant="link"
+                    onClick={() => removeItemFromOrder(orderItem.productId)}
+                    className="ms-2 p-0"
+                    style={{ color: 'gray' }}
+                >
+                    <DeleteIcon />
+                </Button>
+            </div>
+        ))
+    );
 
     return (
         <Modal show={showModal} onHide={() => setShowModal(false)}>
@@ -67,20 +93,11 @@ const OrderFormModal: React.FC<OrderFormModalProps> = ({
                             onChange={handleInputChange}
                         />
                     </Form.Group>
-                    {orderedItems.map((orderItem: OrderModel) => (
-                        <div key={orderItem.productId} className="mb-3">
-                            <Form.Label>{orderItem.product.name}</Form.Label>
-                            <Form.Control
-                                type="number"
-                                min="1"
-                                value={orderItem.quantity}
-                                onChange={(e) => updateItemQuantity(orderItem.productId, parseInt(e.target.value))}
-                            />
-                            <Button variant="danger" onClick={() => removeFromOrder(orderItem.productId)} className="mt-2">
-                                Remove
-                            </Button>
-                        </div>
-                    ))}
+                    {renderOrderItems()}
+                    <div className="mt-4">
+                        <Form.Label>Subtotal:</Form.Label>
+                        <div>${subtotal.toFixed(2)}</div>
+                    </div>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

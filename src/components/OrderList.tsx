@@ -17,45 +17,53 @@ const OrderList: React.FC = () => {
 
     return (
         <div style={{ margin: '20px' }}>
-            <Button
-                variant="primary"
-                size="lg"
-                onClick={handleConfirmOrder}
-                disabled={loading}
-                className="mb-4"
-            >
-                {loading ? (
-                    <>
-                        <Spinner
-                            as="span"
-                            animation="border"
-                            size="sm"
-                            role="status"
-                            aria-hidden="true"
-                        />
-                        {' '}Submitting...
-                    </>
-                ) : (
-                    'Confirm Order'
-                )}
-            </Button>
+            {orderedItems.length === 0 ? (
+                <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                    <h4>Your cart is empty</h4>
+                </div>
+            ) : (
+                <>
+                    <Button
+                        variant="primary"
+                        size="lg"
+                        onClick={handleConfirmOrder}
+                        disabled={loading}
+                        className="mb-4"
+                    >
+                        {loading ? (
+                            <>
+                                <Spinner
+                                    as="span"
+                                    animation="border"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
+                                {' '}Submitting...
+                            </>
+                        ) : (
+                            'Confirm Order'
+                        )}
+                    </Button>
 
-            {error && <Alert variant="danger">{error}</Alert>}
+                    {error && <Alert variant="danger">{error}</Alert>}
 
-            <Container>
-                <Row xs={1} md={2} lg={3} className="g-4">
-                    {orderedItems.map((orderItem: OrderModel) => (
-                        <ProductCard key={orderItem.productId} product={orderItem.product} />
-                    ))}
-                </Row>
-            </Container>
+                    <Container>
+                        <Row xs={1} md={2} lg={3} className="g-4">
+                            {orderedItems.map((orderItem: OrderModel) => (
+                                <ProductCard key={orderItem.productId} product={orderItem.product} />
+                            ))}
+                        </Row>
+                    </Container>
 
-            <OrderForm 
-                showModal={showModal} 
-                setShowModal={setShowModal}
-                setLoading={setLoading}
-                setError={setError}
-            />
+                    <OrderForm 
+                        showModal={showModal} 
+                        setShowModal={setShowModal}
+                        setLoading={setLoading}
+                        setError={setError}
+                    />
+                </>
+            )}
         </div>
     );
 };
