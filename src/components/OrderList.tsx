@@ -2,33 +2,17 @@ import React, { useState } from 'react';
 import { Alert, Button, Container, Row, Spinner } from 'react-bootstrap';
 import { useOrder } from './OrderContext';
 import ProductCard from './products/ProductCard';
-import { submitOrder } from '../api/products-api';
-
+import { OrderModel } from '../models/OrderModel';
+import OrderForm from './OrderForm';
 
 const OrderList: React.FC = () => {
-    const { orderedItems, calculateTotalAmount } = useOrder();
+    const { orderedItems } = useOrder();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [showModal, setShowModal] = useState(false);
 
-    const handleSubmitOrder = async () => {
-        setLoading(true);
-        setError(null);
-
-        const totalAmount = calculateTotalAmount();
-        const orderData = {
-            items: orderedItems,
-            totalAmount: totalAmount
-        };
-
-        try {
-            await submitOrder(orderData);
-            alert(`Order submitted successfully! Total Amount: $${totalAmount}`);
-        } catch (err) {
-            setError('An error occurred while submitting the order.');
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
+    const handleConfirmOrder = () => {
+        setShowModal(true);
     };
 
     return (
@@ -36,7 +20,7 @@ const OrderList: React.FC = () => {
             <Button
                 variant="primary"
                 size="lg"
-                onClick={handleSubmitOrder}
+                onClick={handleConfirmOrder}
                 disabled={loading}
                 className="mb-4"
             >
@@ -60,11 +44,18 @@ const OrderList: React.FC = () => {
 
             <Container>
                 <Row xs={1} md={2} lg={3} className="g-4">
-                    {orderedItems.map((orderItem) => (
+                    {orderedItems.map((orderItem: OrderModel) => (
                         <ProductCard key={orderItem.productId} product={orderItem.product} />
                     ))}
                 </Row>
             </Container>
+
+            <OrderForm 
+                showModal={showModal} 
+                setShowModal={setShowModal}
+                setLoading={setLoading}
+                setError={setError}
+            />
         </div>
     );
 };

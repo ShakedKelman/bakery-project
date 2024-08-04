@@ -1,4 +1,3 @@
-// src/contexts/OrderContext.tsx
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { OrderModel } from '../models/OrderModel';
 import { ProductModel } from '../models/ProductModel';
@@ -7,8 +6,8 @@ interface OrderContextType {
   orderedItems: OrderModel[];
   addToOrder: (product: ProductModel) => void;
   removeFromOrder: (productId: number) => void;
+  updateItemQuantity: (productId: number, quantity: number) => void;
   calculateTotalAmount: () => number;
-
 }
 
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
@@ -35,8 +34,7 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
           quantity: 1,
           amount: product.price,
           total: product.price,
-          product: product // Add this line
-
+          product: product
         };
         return [...prevItems, newOrderItem];
       }
@@ -62,12 +60,26 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     });
   };
 
+  const updateItemQuantity = (productId: number, quantity: number) => {
+    setOrderedItems(prevItems => 
+      prevItems.map(item =>
+        item.productId === productId 
+          ? { 
+              ...item, 
+              quantity: quantity,
+              total: quantity * item.amount
+            } 
+          : item
+      )
+    );
+  };
+
   const calculateTotalAmount = () => {
     return orderedItems.reduce((total, item) => total + item.total, 0);
   };
 
   return (
-    <OrderContext.Provider value={{ orderedItems, addToOrder, removeFromOrder,calculateTotalAmount }}>
+    <OrderContext.Provider value={{ orderedItems, addToOrder, removeFromOrder, updateItemQuantity, calculateTotalAmount }}>
       {children}
     </OrderContext.Provider>
   );

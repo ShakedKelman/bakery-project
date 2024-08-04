@@ -42,3 +42,6 @@ const NavbarWeb = () => {
 };
 
 export default NavbarWeb;
+
+
+//https://genericgs.com/api/v1/order/new

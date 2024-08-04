@@ -3,6 +3,7 @@
 import apiCall from './apiCall';
 import { ProductModel } from '../models/ProductModel';
 import { OrderModel } from '../models/OrderModel';
+import axios from 'axios';
 
 export async function getProducts(): Promise<ProductModel[]> {
     const storeId = 83;
@@ -46,45 +47,42 @@ export async function getCategories(): Promise<string[]> {
     }
 }
 
-
-export async function submitOrder(orderData: { items: OrderModel[], totalAmount: number }) {
+export async function submitOrder(orderData: { items: OrderModel[], totalAmount: number }, formData: any) {
     try {
-        // Transform orderData to the expected format
+        console.log('Order Items:', orderData.items);
+
         const orderItems = orderData.items.reduce((acc, item) => {
-            acc[`mkt${item.productId}`] = item.quantity;
+            acc[`${item.productId}`] = item.quantity;
             return acc;
         }, {} as Record<string, number>);
 
         const params = {
             order: orderItems,
-            store_id: 83, // Replace this with the actual store ID
-            client_name: 'John Doe', // Replace with actual client name
-            client_telephone: '1234567890', // Replace with actual client telephone
-            client_email: 'john.doe@example.com', // Replace with actual client email
-            order_comments: 'No comments', // Replace with actual comments if any
+            store_id: 83, // Ensure this is correct
+            client_name: formData.client_name,
+            client_telephone: formData.client_telephone,
+            client_email: formData.client_email,
+            order_comments: formData.order_comments,
         };
 
-        console.log('Submitting order with data:', params); // Log the payload
+        console.log('Submitting order with data:', params);
 
-        const token = 'your-auth-token'; // Replace with your actual token if needed
+        const response = await axios.post('https://genericgs.com/api/v1/order/new', params, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                'Authorization': `Bearer your-auth-token`, // Add authorization header if required
+            }
+        });
 
-        const response = await apiCall('order/new', 'POST', {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` // Add authorization header if required
-        }, params);
-
-        if (response.status) {
-            alert('Order submitted successfully!');
-        } else {
-            console.error('Failed to submit order:', response.errorMessage, response.data); // Log the error details
-            alert(`Failed to submit order: ${response.errorMessage}`);
-        }
-    } catch (error) {
-        console.error('An error occurred while submitting the order:', error); // Log the error details
-        alert('An error occurred while submitting the order.');
+        console.log('Order submitted successfully:', response.data);
+        alert('Order submitted successfully!');
+    } catch (error: any) {
+        const errorText = error.response?.data?.message || error.message || 'Unknown error';
+        console.error('Failed to submit order:', error.response?.status, errorText);
+        alert(`Failed to submit order: ${errorText}`);
     }
 }
-
 
 
 export async function sendContactMessage(params: {
