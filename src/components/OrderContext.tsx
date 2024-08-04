@@ -32,6 +32,7 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       } else {
         const newOrderItem: OrderModel = {
           productId: product.id,
+          productMKT: product.mkt,
           quantity: 1,
           amount: product.price,
           total: product.price,

@@ -52,7 +52,7 @@ export async function submitOrder(orderData: { items: OrderModel[], totalAmount:
         console.log('Order Items:', orderData.items);
 
         const orderItems = orderData.items.reduce((acc, item) => {
-            acc[`${item.productId}`] = item.quantity;
+            acc[`${item.productMKT}`] = item.quantity;
             return acc;
         }, {} as Record<string, number>);
 
