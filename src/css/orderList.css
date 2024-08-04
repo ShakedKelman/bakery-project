@@ -1,0 +1,187 @@
+.orderListBorderContainer {
+    border: 1px solid #ddd; /* Light grey border */
+    padding: 20px; /* Padding inside the border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+    box-sizing: border-box; /* Ensure padding and border are included in the element’s total width and height */
+    width: 1000px;
+margin-left: 150px;
+}
+
+.orderListContainer {
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Space between items */
+    padding: 10px; /* Adjust padding as needed */
+    border: 1px solid #ddd; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    max-height: 100px; /* Maximum height for each list item */
+    overflow: hidden; /* Ensure content does not overflow */
+}
+
+
+
+.list-group-item h5 {
+    margin: 0;
+    font-size: 1rem; /* Adjust font size */
+}
+
+.list-group-item p {
+    margin: 0;
+    font-size: 0.9rem; /* Adjust font size */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+/* src/css/orderList.css */
+
+.order-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    border: 1px solid #E3C7A6;  /* Border color for outline variant */
+    background-color: #003366 !important;  /* Navy color for active */
+    color: white;
+
+}
+
+.order-button:hover {
+    background-color: #D4B887 !important;  /* Darker beige for hover */
+    color: white;
+}
+
+
+
+.order-button.outline {
+    background-color: white;
+    color: #E3C7A6;  /* Outline color */
+    border: 1px solid #E3C7A6;  /* Border color */
+}
+
+.order-button.outline:hover {
+    background-color: #E3C7A6;  /* Darker beige for hover */
+    color: white;
+}
+
+
+/* Specific styles for ProductCard in OrderList */
+.order-list-card .product-card {
+    max-width: 200px; /* Smaller width for OrderList context */
+    max-height: 100px; /* Smaller height for OrderList context */
+    object-fit: cover; /* Ensure image fits well */
+}
+
+.order-list-card .card-img-top {
+    width: 50px; /* Smaller width for image in OrderList context */
+    height: 50px; /* Smaller height for image in OrderList context */
+    object-fit: cover; /* Ensure image covers the area */
+    padding: 5px; /* Adjust padding if needed */
+    border-bottom: 3px solid #030303; /* Adjust border if needed */
+}
+
+.order-list-card .card-body {
+    width: 100px; /* Smaller width for card body in OrderList context */
+    height: 100px; /* Smaller height for card body in OrderList context */
+    object-fit: cover; /* Ensure image fits well */
+
+}
+
+
+
+
+/* Ensure default styles for ProductCard are not affected elsewhere */
+.product-card-image {
+    height: auto;
+    width: auto;
+}
+
+
+/* Specific styles for ProductCard in OrderList */
+.order-list-card .product-card {
+    max-width: 300px; /* Adjusted width for OrderList context */
+    max-height: 100px; /* Adjusted height for OrderList context */
+    object-fit: cover; /* Ensure image fits well */
+    position: relative; /* Needed for absolute positioning of button-wrapper */
+}
+
+.order-list-card .card-img-top {
+    width: 50px; /* Adjusted width for image in OrderList context */
+    height: 50px; /* Adjusted height for image in OrderList context */
+    object-fit: cover; /* Ensure image covers the area */
+    padding: 5px; /* Adjust padding if needed */
+    border-bottom: 3px solid #030303; /* Adjust border if needed */
+}
+
+.order-list-card .card-body {
+    width: 100px; /* Adjusted width for card body in OrderList context */
+    height: 100px; /* Adjusted height for card body in OrderList context */
+    object-fit: cover; /* Ensure image fits well */
+}
+
+.order-list-card .button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center; /* Center buttons vertically */
+    position: absolute; /* Position it inside the card */
+    bottom: 0; /* Stick it to the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for exact centering */
+    max-width: 100px; /* Adjust width to fit within the smaller card */
+    max-height: 30px; /* Adjust height to fit within the smaller card */
+    margin-bottom: 10px; /* Space below the wrapper */
+    height: auto; /* Allow height to adjust automatically */
+    opacity: 1; /* Always visible */
+    transition: opacity 0.3s; /* Smooth transition */
+    box-sizing: border-box; /* Include padding and border in the element’s total width and height */
+    object-fit: cover; /* Ensure image covers the area */
+}
+
+/* Add Button */
+.order-list-card .custom-card-style {
+    margin-bottom: 20px;
+    max-width: 100px;
+    overflow: hidden; /* Ensures child elements respect the border radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+    position: relative; /* Needed for absolute positioning of child elements */
+    width: 300px; /* Increased width */
+    height: 300px; /* Increased height to match width */
+}
+
+
+/* Add Button */
+.order-list-card .add-button {
+    color: #e9eaea;
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for the button */
+    padding: 6px 12px; /* Adjusted padding for smaller button */
+    font-size: 5px; /* Adjust font size to fit within the smaller button */
+    margin-top: 15px;
+
+}
+
+
+
+
+/* Card Header */
+.order-list-card .card-header {
+display: none;
+}
+
+/* Card Title */
+.order-list-card .card-title {
+    display: none;
+}
+
+.order-list-card .counter-display {
+    color: white;
+    font-size: 0.8em; /* Smaller font size */
+}

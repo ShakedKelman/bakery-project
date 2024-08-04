@@ -7,9 +7,10 @@ import Product from './Product';
 
 type ProductCardProps = {
     product: ProductModel;
+    className?: string;
 };
 
-function ProductCard({ product }: ProductCardProps) {
+function ProductCard({ product, className }: ProductCardProps) {
     const { addToOrder, removeFromOrder, orderedItems } = useOrder();
     const [quantity, setQuantity] = useState(0);
     const [showAlert, setShowAlert] = useState(false);
@@ -30,66 +31,61 @@ function ProductCard({ product }: ProductCardProps) {
     const handleRemoveFromCard = () => {
         removeFromOrder(product.id);
     };
+
     const alertStyle = {
         fontSize: '1.2em',
-        backgroundColor: 'white', /* Light green background */
-        borderColor: '#003366', /* Light green border */
-        maxHeight:'100px',
-        width:'300px',
-        padding:'5px',
-
+        backgroundColor: 'white',
+        borderColor: '#003366',
+        maxHeight: '100px',
+        width: '300px',
+        padding: '5px',
     };
+
     return (
         <div>
-               
-        <Col>
- 
-            <Card className="custom-card-style">
-                
-                <Product product={product} />
-                
-                <div className='button-wrapper'>
-                    {quantity === 0 ? (
-                        <Button variant="outline-light" onClick={handleAddToCard} className="mt-3 add-button" size="sm">
-                            Add to Order
-                        </Button>
-                    ) : (
-                        <div className="button-wrapper">
-                            <div className="card-add add-button" onClick={handleRemoveFromCard}>
-                                <SvgIcon>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                    </svg>
-                                </SvgIcon>
+            <Col>
+                <Card className={`custom-card-style ${className}`}>
+                    <Product product={product} />
+                    <div className='button-wrapper'>
+                        {quantity === 0 ? (
+                            <Button variant="outline-light" onClick={handleAddToCard} className="mt-3 add-button" size="sm">
+                                Add to Order
+                            </Button>
+                        ) : (
+                            <div className="button-wrapper">
+                                <div className="card-add add-button" onClick={handleRemoveFromCard}>
+                                    <SvgIcon>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </SvgIcon>
+                                </div>
+                                <div className="counter-display">
+                                    {quantity}
+                                </div>
+                                <div className="card-add add-button" onClick={handleAddToCard}>
+                                    <SvgIcon>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </SvgIcon>
+                                </div>
                             </div>
-                            <div className="counter-display">
-                                {quantity}
-                            </div>
-                            <div className="card-add add-button" onClick={handleAddToCard}>
-                                <SvgIcon>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                    </svg>
-                                </SvgIcon>
-                            </div>
-                        </div>
-                    )}
-                </div>
-       
-            </Card>
-        </Col>
-        <Alert 
-                    show={showAlert} 
-                    variant="success" 
-                    onClose={() => setShowAlert(false)} 
-                    dismissible
-                    style={alertStyle}
-                    className="mt-3"
-                >
-                    The item was added to your order. go to cart  to finish & send your order.
-                </Alert>
+                        )}
+                    </div>
+                </Card>
+            </Col>
+            <Alert 
+                show={showAlert} 
+                variant="success" 
+                onClose={() => setShowAlert(false)} 
+                dismissible
+                style={alertStyle}
+                className="mt-3"
+            >
+                The item was added to your order. Go to cart to finish & send your order.
+            </Alert>
         </div>
-
     );
 }
 

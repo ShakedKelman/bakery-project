@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Alert, Button, Container, Row, Spinner } from 'react-bootstrap';
+import { Alert, Button, Container, ListGroup, Spinner } from 'react-bootstrap';
 import { useOrder } from './OrderContext';
 import ProductCard from './products/ProductCard';
 import { OrderModel } from '../models/OrderModel';
 import OrderForm from './OrderForm';
+import '../css/orderList.css'; // Import the CSS file
 
 const OrderList: React.FC = () => {
     const { orderedItems } = useOrder();
@@ -22,39 +23,52 @@ const OrderList: React.FC = () => {
                     <h4>Your cart is empty</h4>
                 </div>
             ) : (
-                <>
-                    <Button
-                        variant="primary"
-                        size="lg"
-                        onClick={handleConfirmOrder}
-                        disabled={loading}
-                        className="mb-4"
-                    >
-                        {loading ? (
-                            <>
-                                <Spinner
-                                    as="span"
-                                    animation="border"
-                                    size="sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                />
-                                {' '}Submitting...
-                            </>
-                        ) : (
-                            'Confirm Order'
-                        )}
-                    </Button>
+                <Container>
+                    <div className="orderListBorderContainer">
+                        <div className='orderListContainer'>
+                            <ListGroup>
+                                {orderedItems.map((orderItem: OrderModel) => (
+                                    <ListGroup.Item key={orderItem.productId} className="d-flex align-items-center">
+                                        <ProductCard
+                                            product={orderItem.product}
+                                            className="order-list-card" // Apply specific class
+                                        />
+                                        <div className="ms-3">
+                                            <h5>{orderItem.product.name}</h5>
+                                            <p>Quantity: {orderItem.quantity}</p>
+                                            <p>Total: ${orderItem.total.toFixed(2)}</p>
+                                        </div>
+                                    </ListGroup.Item>
+                                ))}
+                            </ListGroup>
+                        </div>
 
-                    {error && <Alert variant="danger">{error}</Alert>}
+                        <div className="button-container">
+                            <Button
+                                variant="light"  /* Match custom styles */
+                                onClick={handleConfirmOrder}
+                                disabled={loading}
+                                className="order-button"
+                            >
+                                {loading ? (
+                                    <>
+                                        <Spinner
+                                            as="span"
+                                            animation="border"
+                                            size="sm"
+                                            role="status"
+                                            aria-hidden="true"
+                                        />
+                                        {' '}Submitting...
+                                    </>
+                                ) : (
+                                    'Confirm Order'
+                                )}
+                            </Button>
+                        </div>
 
-                    <Container>
-                        <Row xs={1} md={2} lg={3} className="g-4">
-                            {orderedItems.map((orderItem: OrderModel) => (
-                                <ProductCard key={orderItem.productId} product={orderItem.product} />
-                            ))}
-                        </Row>
-                    </Container>
+                        {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
+                    </div>
 
                     <OrderForm 
                         showModal={showModal} 
@@ -62,7 +76,7 @@ const OrderList: React.FC = () => {
                         setLoading={setLoading}
                         setError={setError}
                     />
-                </>
+                </Container>
             )}
         </div>
     );
