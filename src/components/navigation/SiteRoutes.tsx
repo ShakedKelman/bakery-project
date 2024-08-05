@@ -12,7 +12,9 @@ const SiteRoutes = () => {
                 <Route path='/home' element={<Home />} />
                 <Route path='/contact' element={<ContactForm />} />
                 <Route path='/' element={<Home />} />
-                <Route path='/orders' element={<OrderList />} /> {/* Route for displaying OrderList */}
+                <Route path='/orders' element={<OrderList/>} /> {/* Route for displaying OrderList */}
+                <Route path='/order' element={<OrderList/>} /> {/* Route for displaying OrderList */}
+
                 <Route path='/menu' element={<Menu />} />
             </Routes>
         </div>

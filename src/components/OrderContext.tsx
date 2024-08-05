@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { OrderModel } from '../models/OrderModel';
 import { ProductModel } from '../models/ProductModel';
 
@@ -14,7 +14,14 @@ interface OrderContextType {
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
 export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [orderedItems, setOrderedItems] = useState<OrderModel[]>([]);
+  const [orderedItems, setOrderedItems] = useState<OrderModel[]>(() => {
+    const savedOrders = localStorage.getItem('orderedItems');
+    return savedOrders ? JSON.parse(savedOrders) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('orderedItems', JSON.stringify(orderedItems));
+  }, [orderedItems]);
 
   const addToOrder = (product: ProductModel) => {
     setOrderedItems(prevItems => {
