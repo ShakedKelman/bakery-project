@@ -28,8 +28,9 @@ const ContactForm = () => {
         content: data.messageContent,
       };
 
-      await sendContactMessage(params);
-
+      const response = await sendContactMessage(params);
+      console.log('Message sent successfully:', response);
+  
       // Reset the form values
       reset({
         fullName: '',
@@ -37,6 +38,10 @@ const ContactForm = () => {
         email: '',
         telephone: ''
       });
+      // Add a small delay before navigation (optional)
+      setTimeout(() => {
+        navigate('/home');
+      }, 100);
     } catch (error) {
       console.error('An error occurred while submitting the form:', error);
     }
