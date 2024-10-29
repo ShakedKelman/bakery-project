@@ -9,6 +9,8 @@ interface OrderContextType {
   removeItemFromOrder: (productId: number) => void; // Completely remove item
   updateItemQuantity: (productId: number, quantity: number) => void;
   calculateTotalAmount: () => number;
+  resetOrder: () => void; // Add this line
+
 }
 
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
@@ -92,9 +94,11 @@ export const OrderProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const calculateTotalAmount = () => {
     return orderedItems.reduce((total, item) => total + item.total, 0);
   };
-
+   const resetOrder = () => {
+    setOrderedItems([]);
+};
   return (
-    <OrderContext.Provider value={{ orderedItems, addToOrder, removeFromOrder, removeItemFromOrder, updateItemQuantity, calculateTotalAmount }}>
+    <OrderContext.Provider value={{ orderedItems, addToOrder, removeFromOrder, removeItemFromOrder, updateItemQuantity, calculateTotalAmount, resetOrder }}>
       {children}
     </OrderContext.Provider>
   );

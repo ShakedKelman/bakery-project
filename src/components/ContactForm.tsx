@@ -5,6 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { Button, Form } from 'react-bootstrap';
 import '../css/form.css'; // Import your custom CSS file
 import { sendContactMessage } from '../api/products-api'; // Import the new function
+import { useNavigate } from 'react-router-dom';
 
 type FormValues = {
   fullName: string;
@@ -15,6 +16,7 @@ type FormValues = {
 
 const ContactForm = () => {
   const { handleSubmit, control, reset, formState: { errors } } = useForm<FormValues>();
+  const navigate = useNavigate();
 
   const onSubmit = async (data: FormValues) => {
     try {

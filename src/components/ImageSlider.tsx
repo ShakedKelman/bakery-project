@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import '../../../fullstack-project/src/css/homepage.css';
-
+import "../css/homepage.css"
 import image1 from '../assets/harim-bakery.webp';
 import image2 from '../assets/cake.png';
 import image3 from '../assets/pate&paff.avif';

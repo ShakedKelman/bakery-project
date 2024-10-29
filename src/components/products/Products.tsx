@@ -1,5 +1,3 @@
-// src/components/Products.tsx
-
 import React, { useEffect, useState } from 'react';
 import { getProducts, getCategories } from '../../api/products-api';
 import ProductCard from './ProductCard';
@@ -36,7 +34,8 @@ const Products: React.FC = () => {
                 const fetchedCategories = await getCategories();
                 console.log('Fetched categories:', fetchedCategories);
                 if (Array.isArray(fetchedCategories)) {
-                    setCategories(fetchedCategories);
+                    // Filter out empty or null categories
+                    setCategories(fetchedCategories.filter(category => category && category.trim() !== ''));
                 } else {
                     console.error('getCategories did not return an array:', fetchedCategories);
                     setCategories([]);
@@ -50,27 +49,30 @@ const Products: React.FC = () => {
         fetchProducts();
         fetchCategories();
         console.log('Rendering Products component');
-
     }, []);
 
     useEffect(() => {
-        if (selectedCategory) {
+        if (selectedCategory && categories.includes(selectedCategory)) {
+            // Filter products only if a valid category is selected
             setFilteredProducts(products.filter(product => product.category === selectedCategory));
         } else {
+            // Show all products if no valid category is selected
             setFilteredProducts(products);
         }
-    }, [products, selectedCategory]);
+    }, [products, selectedCategory, categories]);
 
     return (
         <div style={{ margin: '20px' }}>
             <Container>
                 <div className="category-button-group">
+                    {/* "All" Button */}
                     <Button
                         className={`category-button ${selectedCategory === null ? 'active' : 'outline'}`}
                         onClick={() => setSelectedCategory(null)}
                     >
                         All
                     </Button>
+                    {/* Render Category Buttons, excluding empty categories */}
                     {categories.map(category => (
                         <Button
                             key={category}
@@ -81,6 +83,7 @@ const Products: React.FC = () => {
                         </Button>
                     ))}
                 </div>
+                {/* Display Products */}
                 <Row xs={1} md={2} lg={3} className="g-4">
                     {filteredProducts.map(product => (
                         <ProductCard key={product.id} product={product} />

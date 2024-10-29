@@ -3,6 +3,7 @@ import { useOrder } from './OrderContext';
 import { submitOrder } from '../api/products-api';
 import { OrderFormData } from '../models/OrderFormDataModel';
 import OrderFormModal from './OrderFormModal';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
     showModal: boolean;
@@ -12,7 +13,9 @@ type Props = {
 }
 
 const OrderForm: React.FC<Props> = ({ showModal, setShowModal, setLoading, setError }) => {
-    const { orderedItems, calculateTotalAmount } = useOrder();
+    const { orderedItems, calculateTotalAmount, resetOrder } = useOrder();
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState<OrderFormData>({
         client_name: '',
         client_telephone: '',
@@ -40,7 +43,10 @@ const OrderForm: React.FC<Props> = ({ showModal, setShowModal, setLoading, setEr
         try {
             await submitOrder(orderData, formData);
             setShowModal(false);
+            resetOrder(); // Reset the order context
             alert(`Order submitted successfully! Total Amount: $${totalAmount}`);
+            navigate('/home'); 
+
         } catch (err) {
             setError('An error occurred while submitting the order.');
             console.error(err);

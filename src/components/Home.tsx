@@ -4,9 +4,9 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Carousel } from 'react-bootstrap';
-import '../../../fullstack-project/src/css/homepage.css';
 import { Container, Navbar, Nav, Button, Row, Col } from 'react-bootstrap';
 import ImageSlider from './ImageSlider';
+import "../css/homepage.css"
 
 
 type Props = {};

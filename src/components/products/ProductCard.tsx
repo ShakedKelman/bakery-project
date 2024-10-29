@@ -11,7 +11,7 @@ type ProductCardProps = {
 };
 
 function ProductCard({ product, className }: ProductCardProps) {
-    const { addToOrder, removeFromOrder, orderedItems } = useOrder();
+    const { addToOrder, removeFromOrder, removeItemFromOrder, orderedItems } = useOrder();
     const [quantity, setQuantity] = useState(0);
     const [showAlert, setShowAlert] = useState(false);
 
@@ -29,7 +29,11 @@ function ProductCard({ product, className }: ProductCardProps) {
     };
 
     const handleRemoveFromCard = () => {
-        removeFromOrder(product.id);
+        if (quantity > 1) {
+            removeFromOrder(product.id);
+        } else {
+            removeItemFromOrder(product.id); // Completely remove item if quantity is 1
+        }
     };
 
     const alertStyle = {
